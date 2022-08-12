@@ -1,7 +1,9 @@
+{% comment %} the 'case when' statement helps the shop owner choose between different types of sections for their page, in this case, the header sections is broken up into 3 different versions, whenever a shop owner chooses one, this case statement will react accordingly. Example: if Header 1 is chosen, the "when HEADER 1" section will activate and only display code and designs that is within that statement and that statement only. {% endcomment %}
 {% case section.settings.header_type %}
   {% comment %} Starting Header 1 {% endcomment %}
   {% when 'header1' %}
     <header class="header header1">
+      {% comment %} the collection nav works as follows.. if the menu selected in the settings is NOT blank then the following occurs.. the navigation section will display every link listed in the menu using a for loop (For every link in menu create a link element).. Then another if statement checks if there are links inside of a link (If link's links are blank), if they are blank then a normal link list element will display however if it is not blank then another for loop is created for the child links along with the regular link that wouldve been displayed regardless. {% endcomment %}
       <ul class="header1__collections-nav">
         {%- if section.settings.menu != blank -%}
           {%- for link in section.settings.menu.links -%}
@@ -22,7 +24,7 @@
           {%- endfor -%}
         {%- endif -%}
       </ul>
-
+      {% comment %} if logo image for header has not been selected then shop name will only display in its place. {% endcomment %}
       <div class="header1__logo">
         <a href="{{ routes.root_url }}">
           {%- if section.settings.logo != blank -%}
@@ -59,9 +61,11 @@
             {%- endif -%}
           {%- endfor -%}
         {%- endif -%}
-        <a href="{{ routes.cart_url }}}">
+        {% comment %} {{ route.cart_url }} is a link url that directly brings you to your shopping cart information {% endcomment %}
+        <a href="{{ routes.cart_url }}">
           <i class="fa-solid fa-cart-shopping"></i>
         </a>
+        {% comment %} This if statement asks if the store accounts are enabled, if so, the user icon will show up in the upper right corner and will be attached to a link to the user's account. This has two routes attached, one route directing you to the user account page if you are a logged in customer and the other page prompting you to log in if you are not a logged in customer. {% endcomment %}
         {%- if shop.customer_accounts_enabled -%}
           <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
             <i class="fa-solid fa-user"></i>
@@ -149,7 +153,7 @@
               <li class="header3__collection-link">
                 <a href="{{ link.url }}">{{ link.title | escape }}<i class="fa-solid fa-chevron-down"></i></a>
                 <ul class="collection-link__sub-links">
-                  {%- for childlink in link.links -%}
+                  {%- for childlink in link.links -%} 
                     <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
                   {%- endfor -%}
                 </ul>
@@ -169,7 +173,7 @@
     </header>
   {% endcase %}
 
-
+{% comment %} Schema section displays the tools we are allowing the user to use and have using JSON {% endcomment %}
 {% schema %}
 {
   "name": "t:sections.header.name",
