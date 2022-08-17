@@ -104,7 +104,6 @@
             "type": "announcement",
             "settings": {
               "text": "4th of July Sale - 50% OFF",
-              "color_scheme": "accent-1",
               "link": "shopify:\/\/collections\/adidas"
             }
           }
@@ -120,14 +119,9 @@
         "settings": {
           "color_scheme": "background-1",
           "logo_width": 90,
-          "logo_position": "middle-left",
           "menu": "main-menu",
           "menu_type_desktop": "dropdown",
-          "show_line_separator": true,
-          "enable_sticky_header": true,
-          "margin_bottom": 0,
-          "padding_top": 20,
-          "padding_bottom": 20
+          "enable_sticky_header": true
         }
       },
       "footer": {
