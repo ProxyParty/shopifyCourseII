@@ -1,5 +1,6 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
 
+{% comment %} Hero1 classes designed to change at the hands of the shopify store owner (including: info_alignment and hero_height) The most optimal way of changing an section or block is to do it through the element's classes {% endcomment %}
 <div class="hero hero1 hero1--aligned-{{ section.settings.info_alignment }} hero1--{{ section.settings.hero_height }}">
     {%- if section.settings.image != blank -%}
         <img
@@ -21,13 +22,15 @@
     {%- else -%}
         {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
     {%- endif -%}
+    {% comment %} the assign tag is setting a variable named 'opacity' this will be tied to the range type in the schema settings with the same id, 'opacity'. Using this, we connect it to the background color in content-container. Now we are able to modulate the opacity of the background in Shopify Customize  {% endcomment %}
     {% assign opacity = section.settings.opacity | divided_by: 100.00 %}
     <div class="hero1__content-container" style="background-color: {{ section.settings.background | color_modify: 'alpha', opacity }}">
+      {% comment %} clarifying the meaning behind each block in blocks section within the schema {% endcomment %}
         <div class="hero1__info">
             {%- for block in section.blocks -%}
                 {% case block.type %}
                   {%- when 'heading' -%}
-                    <h1 class="hero1__title">{{ block.settings.title | escape }}</h1>
+                    <h1 class="hero1__title hero1__title--{{ block.settings.title_size }}">{{ block.settings.title | escape }}</h1>
                   {%- when 'paragraph' -%}
                     <p class="hero1__paragraph">{{ block.settings.paragraph | escape }}</p>
                   {%- when 'text' -%}
@@ -140,6 +143,31 @@
             "id": "title",
             "label": "Title",
             "default": "Title"
+        },
+        {
+          "type": "select",
+          "id": "title_size",
+          "options": [
+            {
+              "value": "sm",
+              "label": "Small"
+            },
+            {
+              "value": "md",
+              "label": "Medium"
+            },
+            {
+              "value": "lg",
+              "label": "Large"
+            },
+            {
+              "value": "xl",
+              "label": "Extra Large"
+            }
+          ],
+          "default": "md",
+          "label": "Font Size"
+    
         }
       ]
     },

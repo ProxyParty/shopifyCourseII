@@ -360,9 +360,20 @@ table {
   align-items: center;
 }
 .hero1__title {
-  font-size: 3rem;
   font-family: Playball, cursive;
   color: #fff;
+}
+.hero1__title--sm {
+  font-size: 2rem;
+}
+.hero1__title--md {
+  font-size: 3rem;
+}
+.hero1__title--lg {
+  font-size: 4.5rem;
+}
+.hero1__title--xl {
+  font-size: 6rem;
 }
 .hero1__paragraph {
   margin-bottom: 2rem;
