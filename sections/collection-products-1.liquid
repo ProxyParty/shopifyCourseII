@@ -1,11 +1,14 @@
 <div class="collection collection1">
   <div class="container">
     <div class="row">
+      {% comment %} for loop created for the array of products. limit variable attribute gives store owner opportunity to select the amount of products they would like to display to the store. the total_products variable is the id of a range type in the schema which lets the storeowner select the number of products to show using a slider {% endcomment %}
     {%- for product in section.settings.collection.products limit: section.settings.total_products -%}
+      {% comment %} classes for applying different display of columns for different viewing sizes {% endcomment %}
       <div class="{{ section.settings.xxl_col }} {{ section.settings.xl_col }} {{ section.settings.lg_col }} {{ section.settings.md_col }} {{ section.settings.sm_col }}">
         <div class="collection1__collection-item">
           {% assign opacity = section.settings.opacity | divided_by: 100.00 %}
           <div class="collection1__product-img collection1__product-img--{{ section.settings.image_fit }} collection1__product-img--{{ section.settings.container_shape }}" style="background-color: {{ section.settings.background | color_modify: 'alpha', opacity }}" >
+            {% comment %} product.images displays the first image provided to a product. if a product's image is not blank then display else display a placeholder svg {% endcomment %}
             {%- if product.images[0] != blank -%}
               <a href="{{ product.url }}" class="img-link">
                 <img srcset="{%- if product.images[0].width >= 165 -%}{{ product.images[0] | image_url: width: 165 }} 165w,{%- endif -%}
@@ -23,10 +26,10 @@
             {%- else -%}
               {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
-            <div class="collection1__heart"><i class="fa-regular fa-heart"></i></div>
           </div>
           <div class="collection1__product-info">
             <div class="collection1__product-details">
+              {% comment %} if statement allowing store owner freedom to show the title and price of a product or not. If you choose to show then it will display, if not then it will not. {% endcomment %}
               {%- if section.settings.show_title -%}
               <span class="collection1__product-title">
               {{ product.title }}
@@ -67,6 +70,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
 }
 {%- endstyle -%}
 
+{% comment %} collection type in the settings allows for storeowner to choose a collection within a certain block or something similar within the settings. {% endcomment %}
 {% schema %}
 {
   "name": "Collection Products 1",
