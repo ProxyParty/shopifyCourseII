@@ -708,8 +708,9 @@ table {
 }
 .footer__social-link {
   display: block;
-  padding: 20px;
+  padding: 20px 0 20px 0;
   color: #7e7e7e;
+  flex: fit-content;
 }
 .footer__bottom {
   border-top: 1px solid #7e7e7e;
