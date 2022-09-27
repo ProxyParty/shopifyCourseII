@@ -1,0 +1,269 @@
+<div class="collection collection3">
+  <div class="container">
+    <div class="row">
+      {%- for block in section.blocks -%}
+        <div class="col-md-3">
+          <div class="collection3__collection-item">
+            <div class="collection3__product-img" style="display: inherit;">
+              {%- if block.settings.product.images != blank -%}
+                <a href="{{ block.settings.product.url }}" class="img-link">
+                  <img srcset="{%- if block.settings.product.images[0].width >= 165 -%}{{ block.settings.product.images[0] | image_url: width: 165 }} 165w,
+                  {%- endif -%}
+                          {%- if block.settings.product.image.width >= 360 -%}{{ block.settings.product.image | image_url: width: 360 }} 360w,{%- endif -%}
+                          {%- if block.settings.product.image.width >= 535 -%}{{ block.settings.product.image | image_url: width: 535 }} 535w,{%- endif -%}
+                          {%- if block.settings.product.image.width >= 750 -%}{{ block.settings.product.image | image_url: width: 750 }} 750w,{%- endif -%}
+                          {%- if block.settings.product.image.width >= 1070 -%}{{ block.settings.product.image | image_url: width: 1070 }} 1070w,{%- endif -%}
+                          {%- if block.settings.product.image.width >= 1500 -%}{{ block.settings.product.image | image_url: width: 2000 }} 2000w,{%- endif -%}
+                          {{ block.settings.product.image | image_url }} {{ block.settings.product.image.width }}w"
+                  src="{{ product.images[0] | image_url: width: 1500 }}"
+                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                  alt="{{ block.settings.product.image.alt | escape }}" loading="lazy" width="{{ block.settings.product.image.width }}"
+                  height="{{ block.settings.product.image.height }}" class="collection3__img-front" style="object-fit: contain;">
+                  <img srcset="{%- if block.settings.product.images[1].width >= 165 -%}{{ block.settings.product.images[1] | image_url: width: 165 }} 165w,{%- endif -%}
+                          {%- if block.settings.product.image.width >= 360 -%}{{ block.settings.product.image | image_url: width: 360 }} 360w,{%- endif -%}
+                          {%- if block.settings.product.image.width >= 535 -%}{{ block.settings.product.image | image_url: width: 535 }} 535w,{%- endif -%}
+                          {%- if block.settings.product.image.width >= 750 -%}{{ block.settings.product.image | image_url: width: 750 }} 750w,{%- endif -%}
+                          {%- if block.settings.product.image.width >= 1070 -%}{{ block.settings.product.image | image_url: width: 1070 }} 1070w,{%- endif -%}
+                          {%- if block.settings.product.image.width >= 1500 -%}{{ block.settings.product.image | image_url: width: 2000 }} 2000w,{%- endif -%}
+                          {{ block.settings.product.image | image_url }} {{ block.settings.product.image.width }}w"
+                  src="{{ product.images[1] | image_url: width: 1500 }}"
+                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                  alt="{{ block.settings.product.image.alt | escape }}" loading="lazy" width="{{ block.settings.product.image.width }}"
+                  height="{{ block.settings.product.image.height }}" class="collection3__img-back" style="object-fit: contain;">
+                </a>
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+              <div class="collection3__heart">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+            </div>
+            <div class="collection3__product-info">
+              <div class="collection3__product-details">
+                {% if section.settings.show_productname != false %}
+                <span class="collection3__product-title">{{ block.settings.product_name }}</span>
+                {% endif %}
+                {% if section.settings.show_price != false %}
+                <span class="collection3__product-price">{{ block.settings.product_price }}</span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+  {% comment %} the preset section determines what settings will be set once the section is called upon, in this case it is setup that the background will be white, there will be 3 collections displayed and the column sizing is displayed beforehand so the storeowner doesn't have to do that themselves. {% endcomment %}
+  {% schema %}
+  {
+    "name": "Tall Collection",
+    "class": "section",
+    "settings": [
+      {
+        "type": "select",
+        "id": "image_fit",
+        "options": [
+          {
+            "value": "cover",
+            "label": "Cover"
+          },
+          {
+            "value": "contain",
+            "label": "Contain"
+          }
+        ],
+        "default": "contain",
+        "label": "Product Image Fit"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "#EDEFF5"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_productname",
+        "label": "Show Product Name",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_price",
+        "label": "Show Product Price",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "xxl_col",
+        "options": [
+          {
+            "value": "col-xxl-6",
+            "label": "2 Columns"
+          },
+          {
+            "value": "col-xxl-4",
+            "label": "3 Columns"
+          },
+          {
+            "value": "col-xxl-3",
+            "label": "4 Columns"
+          },
+          {
+            "value": "col-xxl-2",
+            "label": "6 Columns"
+          }
+        ],
+        "default": "col-xxl-3",
+        "label": "XXL Devices"
+      },
+      {
+        "type": "select",
+        "id": "xl_col",
+        "options": [
+          {
+            "value": "col-xl-6",
+            "label": "2 Columns"
+          },
+          {
+            "value": "col-xl-4",
+            "label": "3 Columns"
+          },
+          {
+            "value": "col-xl-3",
+            "label": "4 Columns"
+          },
+          {
+            "value": "col-xl-2",
+            "label": "6 Columns"
+          }
+        ],
+        "default": "col-xl-3",
+        "label": "Extra Large Devices"
+      },
+      {
+        "type": "select",
+        "id": "lg_col",
+        "options": [
+          {
+            "value": "col-lg-6",
+            "label": "2 Columns"
+          },
+          {
+            "value": "col-lg-4",
+            "label": "3 Columns"
+          },
+          {
+            "value": "col-lg-3",
+            "label": "4 Columns"
+          },
+          {
+            "value": "col-lg-2",
+            "label": "6 Columns"
+          }
+        ],
+        "default": "col-lg-3",
+        "label": "Large Devices"
+      },
+      {
+        "type": "select",
+        "id": "md_col",
+        "options": [
+          {
+            "value": "col-md-6",
+            "label": "2 Columns"
+          },
+          {
+            "value": "col-md-4",
+            "label": "3 Columns"
+          },
+          {
+            "value": "col-md-3",
+            "label": "4 Columns"
+          },
+          {
+            "value": "col-md-2",
+            "label": "6 Columns"
+          }
+        ],
+        "default": "col-md-3",
+        "label": "Medium Devices"
+      },
+      {
+        "type": "select",
+        "id": "sm_col",
+        "options": [
+          {
+            "value": "col-sm-6",
+            "label": "2 Columns"
+          },
+          {
+            "value": "col-sm-4",
+            "label": "3 Columns"
+          },
+          {
+            "value": "col-sm-3",
+            "label": "4 Columns"
+          },
+          {
+            "value": "col-sm-2",
+            "label": "6 Columns"
+          }
+        ],
+        "default": "col-sm-6",
+        "label": "Small Devices"
+      }
+    ],
+    "blocks": [
+        {
+          "type": "multicolumn",
+          "name": "Product",
+          "settings": [
+            {
+              "type": "product",
+              "id": "product",
+              "label": "Product"
+            },
+            {
+              "type": "text",
+              "id": "product_name",
+              "label": "Product Name",
+              "default": "iPhone 35S"
+            },
+            {
+              "type": "text",
+              "id": "product_price",
+              "label": "Product Price",
+              "default": "$3000"
+            }
+          ]
+        }
+      ],
+    "presets": [
+      {
+        "name": "Tall Collection",
+        "settings":{
+            "background": "#FFFFFF",
+            "sm_col": "col-sm-2",
+            "md_col": "col-md-3",
+            "lg_col": "col-lg-4",
+            "xl_col": "col-xl-4",
+            "xxl_col": "col-xxl-4"
+            },
+        "blocks": [
+            {
+              "type": "multicolumn"
+            },
+            {
+              "type": "multicolumn"
+            },
+            {
+              "type": "multicolumn"
+            }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
