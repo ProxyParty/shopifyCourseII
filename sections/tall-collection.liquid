@@ -47,6 +47,11 @@
                 <span class="collection3__product-price">{{ block.settings.product_price }}</span>
                 {% endif %}
               </div>
+              <div class="collection3__colors">
+                {%- for variant in block.settings.product.variants.option2 -%}
+                  <div class="collection3__color collection3__color--{{ variant }}"></div>
+                {%- endfor -%}
+              </div>
             </div>
           </div>
         </div>
@@ -237,6 +242,12 @@
               "id": "product_price",
               "label": "Product Price",
               "default": "$3000"
+            },
+            {
+              "type": "color",
+              "id": "product_color",
+              "label": "Product Color",
+              "default": "#333333"
             }
           ]
         }
