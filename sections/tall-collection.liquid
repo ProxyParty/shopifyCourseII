@@ -48,8 +48,9 @@
                 {% endif %}
               </div>
               <div class="collection3__colors">
-                {%- for variant in block.settings.product.variants.option2 -%}
-                  <div class="collection3__color collection3__color--{{ variant }}"></div>
+                {%- assign product_colors = block.settings.product.variants | map: 'option2' | uniq -%}
+                {%- for color in product_colors -%}
+                  <div class="collection3__color collection3__color--{{ color }}"></div>
                 {%- endfor -%}
               </div>
             </div>
