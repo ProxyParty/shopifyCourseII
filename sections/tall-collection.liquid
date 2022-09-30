@@ -49,10 +49,9 @@
               </div>
               <div class="collection3__colors">
                 {%- assign product_colors = block.settings.product.variants | map: 'option2' | uniq -%}
-                {%- assign product_available = block.settings.product.variants | map: 'available' -%}
                 {%- for product_color in product_colors -%}
-                  <div class="collection3__color" style="background: {{ product_color }} !important; border: 2px solid;"></div>
-                  <div>{{ product_available }}</div>
+                  <div class="collection3__color" style="background: {{ product_color }} !important; border: 2px solid;">
+                  </div>
                 {%- endfor -%}
               </div>
             </div>
