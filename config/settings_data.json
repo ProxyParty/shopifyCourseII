@@ -99,27 +99,17 @@
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
-        "blocks": {
-          "announcement-bar-0": {
-            "type": "announcement",
-            "settings": {
-              "text": "4th of July Sale - 50% OFF",
-              "link": "shopify:\/\/collections\/adidas"
-            }
-          }
-        },
-        "block_order": [
-          "announcement-bar-0"
-        ],
         "settings": {
         }
       },
       "header": {
         "type": "header",
         "settings": {
+          "header_type": "header1",
           "color_scheme": "background-1",
           "logo_width": 90,
           "menu": "main-menu",
+          "menu2": "main-menu",
           "menu_type_desktop": "dropdown",
           "enable_sticky_header": true
         }
@@ -288,8 +278,9 @@
               "type": "announcement",
               "settings": {
                 "text": "Welcome to our store",
-                "color_scheme": "background-1",
-                "link": ""
+                "link": "",
+                "background_color": "#605e7d",
+                "announcement_text_color": "#ffffff"
               }
             }
           },
@@ -304,11 +295,8 @@
           "settings": {
             "color_scheme": "background-1",
             "logo_width": 90,
-            "logo_position": "middle-left",
             "menu": "main-menu",
-            "show_line_separator": true,
-            "enable_sticky_header": true,
-            "margin_bottom": 0
+            "enable_sticky_header": true
           }
         },
         "footer": {
