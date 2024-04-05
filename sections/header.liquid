@@ -1,7 +1,11 @@
+
 {% comment %} the 'case when' statement helps the shop owner choose between different types of sections for their page, in this case, the header sections is broken up into 3 different versions, whenever a shop owner chooses one, this case statement will react accordingly. Example: if Header 1 is chosen, the "when HEADER 1" section will activate and only display code and designs that is within that statement and that statement only. {% endcomment %}
 {% case section.settings.header_type %}
   {% comment %} Starting Header 1 {% endcomment %}
   {% when 'header1' %}
+    {{
+      "Header1.css" | asset_url | stylesheet_tag
+    }}
     <header class="header header1">
       {% comment %} the collection nav works as follows.. if the menu selected in the settings is NOT blank then the following occurs.. the navigation section will display every link listed in the menu using a for loop (For every link in menu create a link element).. Then another if statement checks if there are links inside of a link (If link's links are blank), if they are blank then a normal link list element will display however if it is not blank then another for loop is created for the child links along with the regular link that wouldve been displayed regardless. {% endcomment %}
       <ul class="header1__collections-nav">
@@ -75,6 +79,9 @@
     </header>
   {% comment %} Starting Header 2 {% endcomment %}
   {% when 'header2' %}
+    {{
+      "Header2.css" | asset_url | stylesheet_tag
+    }}
     <header class="header header2">
       <div class="header2__logo">
         <a href="{{ routes.root_url }}">
@@ -125,6 +132,9 @@
     </header>
   {% comment %} Starting Header 3 {% endcomment %}
   {% when 'header3' %}
+    {{
+      "Header3.css" | asset_url | stylesheet_tag
+    }}
     <header class="header header3">
       <div class="header3__logo">
         <a href="{{ routes.root_url }}">

@@ -1,4 +1,7 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+{{
+  "Hero1.css" | asset_url | stylesheet_tag
+}}
 
 {% comment %} Hero1 classes designed to change at the hands of the shopify store owner (including: info_alignment and hero_height) The most optimal way of changing an section or block is to do it through the element's classes {% endcomment %}
 <div class="hero hero1 hero1--aligned-{{ section.settings.info_alignment }} hero1--{{ section.settings.hero_height }}">

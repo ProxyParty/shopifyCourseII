@@ -292,7 +292,7 @@ table {
   visibility: visible;
   opacity: 1;
 }
-.announce-bar {
+/* .announce-bar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -301,7 +301,7 @@ table {
   background: #605e7d;
   color: #fff;
   font-weight: 700;
-}
+} */
 .hero1 {
   width: 100vw;
   overflow: hidden;
